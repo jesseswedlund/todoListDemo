@@ -1,5 +1,6 @@
 import React from "react";
 import "../css/TodoList.css";
+import Todo from "./Todo";
 
 const dummyData = ["Clean Room", "Laundry", "Grocery Store"];
 
@@ -14,6 +15,7 @@ class TodoList extends React.Component {
 
     this.addItem = this.addItem.bind(this);
     this.changeHandler = this.changeHandler.bind(this);
+    this.deleteItem = this.deleteItem.bind(this)
   }
 
   addItem(event) {
@@ -30,8 +32,11 @@ class TodoList extends React.Component {
     this.setState({ input: event.target.value });
   }
 
+  deleteItem(index) {
+    this.setState({items: this.state.items.filter((item, idx) => idx !== index)})
+  }
+
   render() {
-    console.log(this.state.items);
     return (
       <div className="todo-list-main">
         <div className="header">
@@ -46,7 +51,7 @@ class TodoList extends React.Component {
           </form>
           <ul>
             {this.state.items.map((item, idx) => (
-              <li key={idx}>{item}</li>
+              <Todo key={idx} idx={idx} item={item} deleteItem={this.deleteItem}/>
             ))}
           </ul>
         </div>

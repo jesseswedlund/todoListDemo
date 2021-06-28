@@ -1,0 +1,9 @@
+.list-item-box {
+    display: flex;
+    min-width: 300px;
+    justify-content: space-between;
+}
+
+.todo-completed {
+    text-decoration: line-through;
+}
